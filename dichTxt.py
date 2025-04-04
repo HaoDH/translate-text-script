@@ -25,9 +25,19 @@ def is_english(text: str) -> bool:
     detected_lang = detect_language(text)
     return detected_lang == 'en'
 
+def is_key_value_format(text: str) -> bool:
+    """
+    Kiểm tra xem chuỗi có dạng key=value không (ví dụ: Event=3, Event=4).
+    Quy tắc: chứa dấu =, không có khoảng trắng trước/sau dấu =.
+    """
+    return bool(re.match(r'^[^=\s]+=[^=\s]+$', text))
+
 async def translate_text(text: str) -> Optional[str]:
     if not is_english(text):
         print(f"Văn bản '{text}' không phải tiếng Anh, không thực hiện dịch.")
+        return text
+    if is_key_value_format(text):
+        print(f"Văn bản '{text}' có dạng key=value, không thực hiện dịch.")
         return text
     try:
         print(f"Đang dịch '{text}' từ tiếng Anh sang tiếng Việt...")
@@ -78,7 +88,7 @@ async def process_file(input_filename: str, output_filename: str) -> None:
     with open(output_filename, 'w', encoding='utf-8') as outfile:
         for line, original, translated in results:
             outfile.write(line)
-            if original and translated:
+            if original and translated and original != translated:  # Chỉ thêm nếu có thay đổi
                 translations.append((original, translated))
                 count += 1
 
