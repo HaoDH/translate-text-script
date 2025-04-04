@@ -1,0 +1,2 @@
+string value = "Xin chào thế giới"
+string value = "Chào buổi sáng"
