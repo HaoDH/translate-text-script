@@ -128,7 +128,7 @@ objc = {
   ],
   "isSamsungPlan" : false,
   "lastSubscribedDate" : "Jun 18, 2025, 09:34:05 AM",
-  "expirationDate" : "Jun 18, 2026, 09:33:47 AM",
+  "expirationDate" : "Jun 18, 2027, 09:33:47 AM",
   "isUngatedTrialDisabled" : false,
   "isEligibleForGr4vyMigration" : false,
   "isPremium" : true,
